@@ -26,6 +26,15 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+    output = "techage_nuclear:ta4_reactor_controller_pas",
+    recipe = {
+        {"default:steel_ingot", "techage_nuclear:DU_plate", "default:steel_ingot"},
+        {"techage_nuclear:DU_plate", "techage_nuclear:ta4_centrifuge_pas", "techage_nuclear:DU_plate"},
+        {"default:steel_ingot", "techage_nuclear:DU_plate", "default:steel_ingot"}
+    }
+})
+
+minetest.register_craft({
     output = "techage_nuclear:reactor_pipe_in",
     recipe = {
         {"techage_nuclear:reactor_casing", "techage:ta3_pipeS"}
@@ -50,5 +59,46 @@ minetest.register_craft({
     output = "techage_nuclear:reactor_cooler",
     recipe = {
         {"bucket:bucket_water", "techage_nuclear:reactor_casing"}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:turbine_casing 16",
+    recipe = {
+        {"", "default:steel_ingot", ""},
+        {"default:steel_ingot", "", "default:steel_ingot"},
+        {"", "default:steel_ingot", ""}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:turbine_pipe_in",
+    recipe = {
+        {"techage_nuclear:turbine_casing", "techage:ta3_pipeS"}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:turbine_pipe_out",
+    recipe = {
+        {"techage:ta3_pipeS", "techage_nuclear:turbine_casing"}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:turbine",
+    recipe = {
+        {"", "default:steel_ingot", ""},
+        {"default:steel_ingot", "techage:ta4_turbine", "default:steel_ingot"},
+        {"", "default:steel_ingot", ""}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:turbine_controller",
+    recipe = {
+        {"", "techage_nuclear:turbine_casing", ""},
+        {"techage_nuclear:turbine_casing", "techage:ta4_turbine", "techage_nuclear:turbine_casing"},
+        {"", "techage_nuclear:turbine_casing", ""}
     }
 })
