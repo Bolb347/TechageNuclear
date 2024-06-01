@@ -3,10 +3,10 @@ local COUNTDOWN_TICKS = 4
 local CYCLE_TIME = 10
 local MAX_SIZE = 10
 
-local CELLHEAT = 10
-local COOLHEAT = -20
+local CELLHEAT = 40
+local COOLHEAT = -15
 
-local WATERPERCELL = 2
+local WATERPERCOOLER = 2
 local WATERTOSTEAM = 2
 
 local STEAMTANKCAPA = 1000
@@ -237,7 +237,7 @@ local function run(pos)
             waterCount = waterCount + techage.get_nvm(pos).liquid.amount
         end
     end
-    if waterCount < cellCount * WATERPERCELL then
+    if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
         return
     else
@@ -249,7 +249,7 @@ local function run(pos)
             steamSpace = steamSpace - techage.get_nvm(pos).liquid.amount
         end
     end
-    if steamSpace < cellCount * WATERPERCELL * WATERTOSTEAM then
+    if steamSpace < coolerCount * WATERPERCOOLER * WATERTOSTEAM then
         CRD(pos).State:blocked(pos, nvm)
         return
     else
@@ -292,16 +292,16 @@ local function run(pos)
     for _, position in ipairs(inlets) do
         table.insert(validInlets, position)
     end
-    while taken < cellCount * WATERPERCELL do
+    while taken < coolerCount * WATERPERCOOLER do
         if #validInlets == 0 then
             CRD(pos).State:idle(pos, nvm)
             break
         end
         for i, position in ipairs(validInlets) do
-            if ((cellCount * WATERPERCELL) / #validInlets) == 0 then
+            if ((coolerCount * WATERPERCOOLER) / #validInlets) == 0 then
                 break
             end
-            amount = take_from_inlet(position, (cellCount * WATERPERCELL) / #validInlets, "techage:water")
+            amount = take_from_inlet(position, (coolerCount * WATERPERCOOLER) / #validInlets, "techage:water")
             taken = taken + amount
             if amount == 0 then
                 table.remove(validInlets, i)
@@ -313,16 +313,16 @@ local function run(pos)
     for _, position in ipairs(outlets) do
         table.insert(validOutlets, position)
     end
-    while put < cellCount * WATERPERCELL * WATERTOSTEAM do
+    while put < coolerCount * WATERPERCOOLER * WATERTOSTEAM do
         if #validOutlets == 0 then
             CRD(pos).State:idle(pos, nvm)
             break
         end
         for i, position in ipairs(validOutlets) do
-            if ((cellCount * WATERPERCELL) / #validInlets) == 0 then
+            if ((coolerCount * WATERPERCOOLER) / #validOutlets) == 0 then
                 break
             end
-            amount = add_to_outlet(position, (cellCount * WATERPERCELL * WATERTOSTEAM) / #validOutlets, "techage_nuclear:steam")
+            amount = add_to_outlet(position, (coolerCount * WATERPERCOOLER * WATERTOSTEAM) / #validOutlets, "techage_nuclear:steam")
             put = put + amount
             if amount == 0 then
                 table.remove(validOutlets, i)
