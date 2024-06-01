@@ -143,3 +143,89 @@ liquid.register_nodes({
 })
 
 Pipe:add_secondary_node_names({"techage_nuclear:reactor_pipe_in", "techage_nuclear:reactor_pipe_out"})
+
+minetest.register_node("techage_nuclear:turbine_pipe_in", {
+    description = "Turbine Inlet",
+    tiles = {
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_pipe_in.png"
+    },
+    groups = {cracky = 2},
+    networks = {
+		pipe2 = {},
+	},
+    after_place_node = function(pos, placer)
+		local meta = M(pos)
+		local nvm = techage.get_nvm(pos)
+		nvm.liquid = {}
+		meta:set_string("formspec", techage.liquid.formspec(pos, nvm))
+		Pipe:after_place_node(pos)
+	end,
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		Pipe:after_dig_node(pos)
+	end,
+	on_rightclick = on_rightclick,
+	can_dig = can_dig,
+	paramtype2 = "facedir",
+	on_rotate = screwdriver.disallow,
+	groups = {cracky=2},
+	on_timer = node_timer
+})
+
+minetest.register_node("techage_nuclear:turbine_pipe_out", {
+    description = "Turbine Outlet",
+    tiles = {
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_casing.png",
+        "techagenuclear_turbine_pipe_out.png"
+    },
+    groups = {cracky = 2},
+    networks = {
+		pipe2 = {},
+	},
+    after_place_node = function(pos, placer)
+		local meta = M(pos)
+		local nvm = techage.get_nvm(pos)
+		nvm.liquid = {}
+		meta:set_string("formspec", techage.liquid.formspec(pos, nvm))
+		Pipe:after_place_node(pos)
+	end,
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		Pipe:after_dig_node(pos)
+	end,
+	on_rightclick = on_rightclick,
+	can_dig = can_dig,
+	paramtype2 = "facedir",
+	on_rotate = screwdriver.disallow,
+	groups = {cracky=2},
+	on_timer = node_timer
+})
+
+liquid.register_nodes({
+	"techage_nuclear:turbine_pipe_in"
+}, Pipe, "tank", {"F"}, {
+    capa = CAPACITY,
+    peek = peek_liquid,
+    put = put_liquid,
+    take = take_liquid,
+    untake = untake_liquid
+})
+
+liquid.register_nodes({
+	"techage_nuclear:turbine_pipe_out"
+}, Pipe, "tank", {"F"}, {
+    capa = CAPACITY,
+    peek = peek_liquid,
+    put = put_liquid,
+    take = take_liquid,
+    untake = untake_liquid
+})
+
+Pipe:add_secondary_node_names({"techage_nuclear:turbine_pipe_in", "techage_nuclear:turbine_pipe_out"})
