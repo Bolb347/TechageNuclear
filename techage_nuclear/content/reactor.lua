@@ -237,7 +237,8 @@ local function run(pos)
             waterCount = waterCount + techage.get_nvm(pos).liquid.amount
         end
     end
-    WATERPERCOOLER = math.ceil(WATERPERCOOLER / (netHeat * netHeat))
+    WATERPERCOOLER = math.ceil(WATERPERCOOLER / math.max(math.sqrt(math.sqrt(math.sqrt(math.abs(netHeat)))), 1))
+    minetest.chat_send_all(tostring(WATERPERCOOLER))
     if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
         return
