@@ -167,7 +167,7 @@ techage.register_consumer("reprocessor", "Reprocessor", {act = tiles, pas = tile
 }, {false, false, false, true}, "techage_nuclear:ta")
 
 local i_stack = ItemStack("techage_nuclear:fuel_waste")
-i_stack:set_count(32)
+i_stack:set_count(10)
 local u235_stack = ItemStack("techage_nuclear:U235_pile")
 u235_stack:set_count(8)
 local u238_stack = ItemStack("techage_nuclear:U238_pile")
