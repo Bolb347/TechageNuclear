@@ -40,8 +40,8 @@ local function get_form(self, pos)
 	"tooltip[3.5,2;1,1;"..self:get_state_tooltip(nvm).."]"..
 	"list[context;dst;5,0;3,3;]"..
 	"item_image[5,0;1,1;techage_nuclear:U235_pile]"..
-    "item_image[5,0;1,2;techage_nuclear:U238_pile]"..
-    "item_image[5,0;1,3;techage_nuclear:Pu239_pile]"..
+	"item_image[5,0;1,2;techage_nuclear:U238_pile]"..
+	"item_image[5,0;1,3;techage_nuclear:Pu239_pile]"..
 	"image[5,0;1,1;techage_form_mask.png]"..
 	"list[current_player;main;0,4;8,4;]"..
 	"listring[context;dst]"..
