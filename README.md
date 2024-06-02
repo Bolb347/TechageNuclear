@@ -24,7 +24,7 @@ Craft components for a turbine
 - Steam Inlet - adding steam the the turbine
 - Water Outlet - removing cooled water from the reactor
 - Turbines - create the electricity from the steam
-- Cable Block - removing power from the system (will delete power if not given space to store it)**
+- Cable Block - removing power from the system (will delete power if not given space to store it)
 
 Construct a Basic Setup
 Reactor:
@@ -52,7 +52,7 @@ Setup:
 7. Connect the output of the turbine to the input of the reactor, to pipe the water produced by the turbine into the reactor
 8. Fill the system with some starting water; Once it has some water, the reactor doesn't lose any water nor gain any
 9. You are done! You have a completed reactor setup
-10. After this, I would recomend you to expand the size of both the reactor and steam turbine; They can be a maximum of 10x10x10!
+10. After this, I would recomend you to expand the size of both the reactor and steam turbine; They can be a maximum of 10x10x10! Make sure to keep your reactors as optimal as possible, using a 3:8 cell:cooler ratio, as suboptimal designs will get diminishing returns.
 11. With a larger reactor, you produce more steam, but also consume more fuel rods; I would recomend automating the production of fuel rods, and the reprocessing of nuclear waste
 
 TODO:
