@@ -29,13 +29,17 @@ local function contains(tab, val)
 end
 
 local function get_allow_metadata_inventory_put(pos, listname, index, stack, player)
-	if listname == "src" then
-		local state = CRD(pos).State
-		if state then
-			state:start_if_standby(pos)
+	local meta = M(pos)
+	local owner = meta:get_string("owner")
+	if owner == player.get_player_name() then
+		if listname == "src" then
+			local state = CRD(pos).State
+			if state then
+				state:start_if_standby(pos)
+			end
 		end
+		return stack:get_count()
 	end
-	return stack:get_count()
 end
 
 local function get_allow_metadata_inventory_move(pos, from_list, from_index, to_list, to_index, count, player)
@@ -43,7 +47,11 @@ local function get_allow_metadata_inventory_move(pos, from_list, from_index, to_
 end
 
 local function get_allow_metadata_inventory_take(pos, listname, index, stack, player)
-	return stack:get_count()
+	local meta = M(pos)
+	local owner = meta:get_string("owner")
+	if owner == player.get_player_name() then
+		return stack:get_count()
+	end
 end
 
 local function get_form(self, pos)
@@ -345,7 +353,7 @@ end
 local function get_on_receive_fields(pos, formname, fields, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player then
+	if owner == player.get_player_name() then
 		CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
 	end
 end
@@ -353,10 +361,11 @@ end
 local function get_can_dig(pos, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player then
+	if owner == player.get_player_name() then
 		local inventory = M(pos):get_inventory()
 		return inventory:is_empty("dst") and inventory:is_empty("src")
-	end
+	else
+		return false
 end
 
 local tiles = {
