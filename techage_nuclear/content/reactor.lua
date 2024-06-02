@@ -159,6 +159,9 @@ local function check_shell(pos)
     local width = off.y_pos - off.y_neg + 1
     local height = off.z_pos - off.z_neg + 1
     local casing_size = (length * width * height) - ((length - 2) * (width - 2) * (height - 2))
+    if (node_tbl["techage_nuclear:ta4_reactor_controller_pas"] + node_tbl["techage_nuclear:ta4_reactor_controller_act"]) > 1 then
+        return false
+    end
     if (node_tbl["techage_nuclear:reactor_casing"] + node_tbl["techage_nuclear:ta4_reactor_controller_pas"] + node_tbl["techage_nuclear:ta4_reactor_controller_act"] + node_tbl["techage_nuclear:reactor_pipe_in"] + node_tbl["techage_nuclear:reactor_pipe_out"]) == casing_size then
         if (in_tbl["techage_nuclear:reactor_casing"] + in_tbl["techage_nuclear:ta4_reactor_controller_pas"] + in_tbl["techage_nuclear:ta4_reactor_controller_act"] + in_tbl["techage_nuclear:reactor_pipe_in"] + in_tbl["techage_nuclear:reactor_pipe_out"]) == 0 then
             return true
