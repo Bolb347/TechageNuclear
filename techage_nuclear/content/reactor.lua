@@ -366,6 +366,7 @@ local function get_can_dig(pos, player)
 		return inventory:is_empty("dst") and inventory:is_empty("src")
 	else
 		return false
+	end
 end
 
 local tiles = {
