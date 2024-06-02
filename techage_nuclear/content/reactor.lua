@@ -252,7 +252,7 @@ local function run(pos)
     WATERPERCOOLER = math.ceil(WATERPERCOOLER / math.max(math.sqrt(math.sqrt(math.sqrt(math.abs(netHeat)))), 1))
     if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
-	minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough water!")
+        minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough water!")
         return
     else
         CRD(pos).State:keep_running(pos, nvm, COUNTDOWN_TICKS)
@@ -265,7 +265,7 @@ local function run(pos)
     end
     if steamSpace < coolerCount * WATERPERCOOLER * WATERTOSTEAM then
         CRD(pos).State:blocked(pos, nvm)
-	minetest.chat_send_player(owner_name, "Reactor Error: Reactor is full of steam!")
+        minetest.chat_send_player(owner_name, "Reactor Error: Reactor is full of steam!")
         return
     else
         CRD(pos).State:keep_running(pos, nvm, COUNTDOWN_TICKS)
@@ -278,7 +278,7 @@ local function run(pos)
     end
     if rodCount < cellCount then
         CRD(pos).State:idle(pos, nvm)
-	minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough fuel rods!")
+        minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough fuel rods!")
         return
     else
         CRD(pos).State:keep_running(pos, nvm, COUNTDOWN_TICKS)
@@ -294,11 +294,11 @@ local function run(pos)
                 CRD(pos).State:keep_running(pos, nvm, COUNTDOWN_TICKS)
             elseif moved == 1 then
                 CRD(pos).State:blocked(pos, nvm)
-		minetest.chat_send_player(owner_name, "Reactor Error: Reactor is full of nuclear waste!")
+                minetest.chat_send_player(owner_name, "Reactor Error: Reactor is full of nuclear waste!")
                 return
             elseif moved == 2 then
                 CRD(pos).State:idle(pos, nvm)
-		minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough fuel rods!")
+                minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough fuel rods!")
                 return
             end
         end
