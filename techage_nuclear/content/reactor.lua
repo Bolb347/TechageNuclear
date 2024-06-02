@@ -31,7 +31,7 @@ end
 local function get_allow_metadata_inventory_put(pos, listname, index, stack, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player.get_player_name() then
+	if owner == player.get_player_name(player) then
 		if listname == "src" then
 			local state = CRD(pos).State
 			if state then
@@ -49,7 +49,7 @@ end
 local function get_allow_metadata_inventory_take(pos, listname, index, stack, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player.get_player_name() then
+	if owner == player.get_player_name(player) then
 		return stack:get_count()
 	end
 end
@@ -353,7 +353,7 @@ end
 local function get_on_receive_fields(pos, fields, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player.get_player_name() then
+	if owner == player.get_player_name(player) then
 		CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
 	end
 end
@@ -361,7 +361,7 @@ end
 local function get_can_dig(pos, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
-	if owner == player.get_player_name() then
+	if owner == player.get_player_name(player) then
 		local inventory = M(pos):get_inventory()
 		return inventory:is_empty("dst") and inventory:is_empty("src")
 	else
