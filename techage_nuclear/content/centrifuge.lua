@@ -152,7 +152,7 @@ techage.register_consumer("centrifuge", "Centrifuge", {act = tiles, pas = tiles}
     can_dig = get_can_dig,
     sounds = default.node_sound_metal_defaults(),
     power_consumption = {0, 10, 10, 10},
-    power_sides = {D = 1},
+    power_sides = {B = 1},
     allow_metadata_inventory_put = get_allow_metadata_inventory_put,
     allow_metadata_inventory_move = get_allow_metadata_inventory_move,
     allow_metadata_inventory_take = get_allow_metadata_inventory_take,
