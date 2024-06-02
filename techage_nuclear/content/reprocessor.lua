@@ -40,8 +40,8 @@ local function get_form(self, pos)
 	"tooltip[3.5,2;1,1;"..self:get_state_tooltip(nvm).."]"..
 	"list[context;dst;5,0;3,3;]"..
 	"item_image[5,0;1,1;techage_nuclear:U235_pile]"..
-  "item_image[5,0;1,2;techage_nuclear:U238_pile]"..
-  "item_image[5,0;1,3;techage_nuclear:Pu239_pile]"..
+    "item_image[5,0;1,2;techage_nuclear:U238_pile]"..
+    "item_image[5,0;1,3;techage_nuclear:Pu239_pile]"..
 	"image[5,0;1,1;techage_form_mask.png]"..
 	"list[current_player;main;0,4;8,4;]"..
 	"listring[context;dst]"..
@@ -169,10 +169,10 @@ techage.register_consumer("reprocessor", "Reprocessor", {act = tiles, pas = tile
 local i_stack = ItemStack("techage_nuclear:fuel_waste")
 i_stack:set_count(32)
 local u235_stack = ItemStack("techage_nuclear:U235_pile")
-u235_stack:set_count(1)
+u235_stack:set_count(8)
 local u238_stack = ItemStack("techage_nuclear:U238_pile")
-u238_stack:set_count(5)
-local pu249_stack = ItemStack("techage_nuclear:Pu249_pile")
-pu249_stack:set_count(1)
-local o_stacks = {u238_stack, u235_stack, pu249_stack}
-table.insert(RECIPES, {input_stack = i_stack, output_stack = o_stacks})
+u238_stack:set_count(25)
+local pu239_stack = ItemStack("techage_nuclear:Pu239_pile")
+pu249_stack:set_count(3)
+local o_stacks = {u238_stack, u235_stack, pu239_stack}
+table.insert(RECIPES, {input_stack = i_stack, output_stacks = o_stacks})
