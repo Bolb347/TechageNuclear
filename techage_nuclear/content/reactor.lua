@@ -362,8 +362,10 @@ local function get_can_dig(pos, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
 	if owner == player.get_player_name(player) then
-		local inventory = M(pos):get_inventory()
-		return inventory:is_empty("dst") and inventory:is_empty("src")
+		if CRD(pos).State ~= "running" then
+			local inventory = M(pos):get_inventory()
+			return inventory:is_empty("dst") and inventory:is_empty("src")
+		end
 	else
 		return false
 	end
