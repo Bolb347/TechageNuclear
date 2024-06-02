@@ -281,8 +281,12 @@ local function keep_running(pos, elapsed)
     run(pos)
 end
 
-local function get_on_receive_fields(pos, fields)
-	CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
+local function get_on_receive_fields(pos, fields, player)
+	local meta = M(pos)
+	local owner = meta:get_string("owner")
+	if owner == player.get_player_name(player) then
+		CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
+	end
 end
 
 local tiles = {
@@ -309,7 +313,7 @@ techage.register_consumer("turbine_controller", "Turbine Controller", {act = til
     tubing = {},
     node_timer = keep_running,
     on_receive_fields = function(pos, formname, fields, player)
-        get_on_receive_fields(pos, fields)
+        get_on_receive_fields(pos, fields, player)
         techage.set_activeformspec(pos, player)
     end,
     groups = {cracky = 2},
