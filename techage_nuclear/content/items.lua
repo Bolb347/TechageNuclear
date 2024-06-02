@@ -28,7 +28,7 @@ minetest.register_craftitem("techage_nuclear:fuel_waste", {
     groups = {powder = 1}
 })
 
-minetest.register_craftitem("techage_nuclear:PU239_pile", {
+minetest.register_craftitem("techage_nuclear:Pu239_pile", {
     description = "Plutonium-239 Pile",
     inventory_image = "techagenuclear_plutonium_pile.png",
     groups = {powder = 1}
