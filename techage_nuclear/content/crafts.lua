@@ -10,9 +10,9 @@ minetest.register_craft({
 minetest.register_craft({
     output = "techage_nuclear:reactor_casing 16",
     recipe = {
-        {"", "techage_nuclear:DU_plate", ""},
-        {"techage_nuclear:DU_plate", "", "techage_nuclear:DU_plate"},
-        {"", "techage_nuclear:DU_plate", ""}
+        {"techage:alumium", "techage_nuclear:DU_plate", "techage:alumium"},
+        {"techage_nuclear:DU_plate", "techage:alumium", "techage_nuclear:DU_plate"},
+        {"techage:alumium", "techage_nuclear:DU_plate", "techage:alumium"}
     }
 })
 
@@ -28,9 +28,9 @@ minetest.register_craft({
 minetest.register_craft({
     output = "techage_nuclear:ta4_reactor_controller_pas",
     recipe = {
-        {"default:steel_ingot", "techage_nuclear:DU_plate", "default:steel_ingot"},
+        {"default:mese", "techage_nuclear:DU_plate", "default:mese"},
         {"techage_nuclear:DU_plate", "techage_nuclear:ta4_centrifuge_pas", "techage_nuclear:DU_plate"},
-        {"default:steel_ingot", "techage_nuclear:DU_plate", "default:steel_ingot"}
+        {"default:mese", "techage_nuclear:DU_plate", "default:mese"}
     }
 })
 
@@ -66,7 +66,7 @@ minetest.register_craft({
     output = "techage_nuclear:turbine_casing 16",
     recipe = {
         {"", "default:steel_ingot", ""},
-        {"default:steel_ingot", "", "default:steel_ingot"},
+        {"default:steel_ingot", "techage:alumium", "default:steel_ingot"},
         {"", "default:steel_ingot", ""}
     }
 })
@@ -89,7 +89,7 @@ minetest.register_craft({
     output = "techage_nuclear:turbine",
     recipe = {
         {"", "default:steel_ingot", ""},
-        {"default:steel_ingot", "techage:ta4_turbine", "default:steel_ingot"},
+        {"default:steel_ingot", "techage:ta5_ceramic_turbine", "default:steel_ingot"},
         {"", "default:steel_ingot", ""}
     }
 })
