@@ -350,7 +350,7 @@ local function keep_running(pos, elapsed)
     run(pos)
 end
 
-local function get_on_receive_fields(pos, formname, fields, player)
+local function get_on_receive_fields(pos, fields, player)
 	local meta = M(pos)
 	local owner = meta:get_string("owner")
 	if owner == player.get_player_name() then
