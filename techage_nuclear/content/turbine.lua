@@ -289,6 +289,20 @@ local function get_on_receive_fields(pos, fields, player)
 	end
 end
 
+local function get_can_dig(pos, player)
+	local meta = M(pos)
+	local owner = meta:get_string("owner")
+	if owner == player.get_player_name(player) then
+		if CRD(pos).State ~= "running" then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 local tiles = {
     "techagenuclear_turbine_casing.png",
     "techagenuclear_turbine_casing.png",
