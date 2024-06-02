@@ -173,6 +173,6 @@ u235_stack:set_count(8)
 local u238_stack = ItemStack("techage_nuclear:U238_pile")
 u238_stack:set_count(25)
 local pu239_stack = ItemStack("techage_nuclear:Pu239_pile")
-pu249_stack:set_count(3)
+pu239_stack:set_count(3)
 local o_stacks = {u238_stack, u235_stack, pu239_stack}
 table.insert(RECIPES, {input_stack = i_stack, output_stacks = o_stacks})
