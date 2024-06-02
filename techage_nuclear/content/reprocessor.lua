@@ -174,5 +174,5 @@ local u238_stack = ItemStack("techage_nuclear:U238_pile")
 u238_stack:set_count(5)
 local pu249_stack = ItemStack("techage_nuclear:Pu249_pile")
 pu249_stack:set_count(1)
-local o_stacks = [u238_stack, u235_stack, pu249_stack]
+local o_stacks = {u238_stack, u235_stack, pu249_stack}
 table.insert(RECIPES, {input_stack = i_stack, output_stack = o_stacks})
