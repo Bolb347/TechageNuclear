@@ -342,13 +342,22 @@ local function keep_running(pos, elapsed)
     run(pos)
 end
 
-local function get_on_receive_fields(pos, fields)
-	CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
+local function get_on_receive_fields(pos, formname, fields, player)
+	local meta = M(pos)
+	local owner = meta:get_string("owner")
+	if owner == player then
+		CRD(pos).State:state_button_event(pos, techage.get_nvm(pos), fields)
+	end
 end
 
-local function get_can_dig(pos)
-	local inventory = M(pos):get_inventory()
-	return inventory:is_empty("dst") and inventory:is_empty("src")
+local function get_can_dig(pos, player)
+	local meta = M(pos)
+	local protected = meta:get_string("protected")
+	local public = meta:get_string("public")
+	if public == true or protected == false and not minetest.is_protected(pos, player) then
+		local inventory = M(pos):get_inventory()
+		return inventory:is_empty("dst") and inventory:is_empty("src")
+	end
 end
 
 local tiles = {
