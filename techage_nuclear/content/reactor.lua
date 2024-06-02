@@ -417,7 +417,7 @@ techage.register_consumer("reactor_controller", "Reactor Controller", {act = til
     tubing = get_tubing,
     node_timer = keep_running,
     on_receive_fields = function(pos, formname, fields, player)
-        get_on_receive_fields(pos, fields)
+        get_on_receive_fields(pos, fields, player)
         techage.set_activeformspec(pos, player)
     end,
     groups = {cracky = 2},
