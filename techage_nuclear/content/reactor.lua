@@ -352,9 +352,8 @@ end
 
 local function get_can_dig(pos, player)
 	local meta = M(pos)
-	local protected = meta:get_string("protected")
-	local public = meta:get_string("public")
-	if public == true or protected == false and not minetest.is_protected(pos, player) then
+	local owner = meta:get_string("owner")
+	if owner == player then
 		local inventory = M(pos):get_inventory()
 		return inventory:is_empty("dst") and inventory:is_empty("src")
 	end
