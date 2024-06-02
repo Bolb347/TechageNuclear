@@ -58,3 +58,6 @@ Setup:
 TODO:
 Add more isotopes, from the reprocessing of nuclear waste, to craft RTGs
 Add radiation damage
+
+BUGS:
+Outputed steam not distributed evenly between reactor steam outputs
