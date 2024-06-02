@@ -237,6 +237,7 @@ local function run(pos)
             waterCount = waterCount + techage.get_nvm(pos).liquid.amount
         end
     end
+    WATERPERCOOLER = math.ceil(WATERPERCOOLER / (netHeat * netHeat))
     if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
         return
