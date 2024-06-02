@@ -224,7 +224,7 @@ end
 
 local function run(pos)
     local owner = M(pos):get_string("owner")
-    local owner_name = player.get_player_name(owner)
+    local owner_name = owner.get_player_name(owner)
     local fueled = false
     local nvm = techage.get_nvm(pos)
     if not check_shell(pos) then
