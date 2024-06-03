@@ -3,8 +3,8 @@ local COUNTDOWN_TICKS = 4
 local CYCLE_TIME = 10
 local MAX_SIZE = 10
 
-local CELLHEAT = 40
-local COOLHEAT = -15
+local CELLHEAT = 8
+local COOLHEAT = -3
 
 local WATERPERCOOLER = 2
 local WATERTOSTEAM = 2
@@ -249,7 +249,7 @@ local function run(pos)
             waterCount = waterCount + techage.get_nvm(pos).liquid.amount
         end
     end
-    WATERPERCOOLER = math.ceil(WATERPERCOOLER / math.max(math.sqrt(math.sqrt(math.sqrt(math.abs(netHeat)))), 1))
+    WATERPERCOOLER = math.ceil(WATERPERCOOLER / math.sqrt(math.sqrt(math.sqrt((-netHeat) + 1))))
     if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
         minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough water!")
