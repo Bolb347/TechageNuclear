@@ -95,10 +95,26 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-    output = "techage_nuclear:turbine_controller",
+    output = "techage_nuclear:cable_output",
+    recipe = {
+        {"techage_nuclear:turbine_casing", "techage:electric_cableS"}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:ta4_turbine_controller_pas",
     recipe = {
         {"", "techage_nuclear:turbine_casing", ""},
         {"techage_nuclear:turbine_casing", "techage:ta4_turbine", "techage_nuclear:turbine_casing"},
         {"", "techage_nuclear:turbine_casing", ""}
+    }
+})
+
+minetest.register_craft({
+    output = "techage_nuclear:ta4_rtg_pas",
+    recipe = {
+        {"", "techage_nuclear:reactor_casing", ""},
+        {"techage_nuclear:reactor_casing", "techage_nuclear:Pu239_pile", "techage_nuclear:reactor_casing"},
+        {"", "techage:electric_cableS", ""}
     }
 })
