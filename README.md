@@ -14,8 +14,8 @@ Craft components for a nuclear reactor
 - Reactor Casing - creating the shell
 - Water Inlet - adding water the the reactor
 - Steam Outlet - removing steam from the reactor
-- Cells - consumes rods to create heat - Creates 40 h
-- Coolers - cool the reactor to create steam - Cools 15 h
+- Cells - consumes rods to create heat - Creates 8 h
+- Coolers - cool the reactor to create steam - Cools 3 h
 
 
 Craft components for a turbine
@@ -28,10 +28,10 @@ Craft components for a turbine
 
 Construct a Basic Setup
 Reactor:
-- Make a 4x4 plate of reactor casing
-- Line the edges, making a 4x4 border, using reactor casings
-- Fill the inside of the reactor with 3 coolers and 1 fuel cell
-- Fill in the top, a 4x4, with reactor casing
+- Make a 4x5 plate of reactor casing
+- Line the edges 2 nodes high, making a 4x5x2 border, using reactor casings
+- Fill the inside of the reactor with 3 fuel cells and 8 coolers
+- Fill in the top, a 4x5, with reactor casing
 - Remove 3 reactor casings, replacing them with 1 controller, 1 water inlet, and 1 steam outlet
 Turbine:
 - Make a 3x3 plate of turbine casing
@@ -54,6 +54,8 @@ Setup:
 9. You are done! You have a completed reactor setup
 10. After this, I would recomend you to expand the size of both the reactor and steam turbine; They can be a maximum of 10x10x10! Make sure to keep your reactors as optimal as possible, using a 3:8 cell:cooler ratio, as suboptimal designs will get diminishing returns.
 11. With a larger reactor, you produce more steam, but also consume more fuel rods; I would recomend automating the production of fuel rods, and the reprocessing of nuclear waste
+
+NOTE: Reactors which are more optimal will subsequently produce more steam than a less optimal design.
 
 TODO:
 Add radiation damage
