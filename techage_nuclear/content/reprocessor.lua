@@ -39,10 +39,12 @@ local function get_form(self, pos)
 	"image_button[3.5,2;1,1;"..self:get_state_button_image(nvm)..";state_button;]"..
 	"tooltip[3.5,2;1,1;"..self:get_state_tooltip(nvm).."]"..
 	"list[context;dst;5,0;3,3;]"..
-	"item_image[5,0;1,1;techage_nuclear:U235_pile]"..
-	"item_image[5,1;1,1;techage_nuclear:U238_pile]"..
-	"item_image[5,2;1,1;techage_nuclear:Pu239_pile]"..
+	"item_image[5,0;1,1;techage_nuclear:U238_pile]"..
+	"item_image[6,0;1,1;techage_nuclear:U235_pile]"..
+	"item_image[7,0;1,1;techage_nuclear:Pu239_pile]"..
 	"image[5,0;1,1;techage_form_mask.png]"..
+    "image[6,0;1,1;techage_form_mask.png]"..
+    "image[7,0;1,1;techage_form_mask.png]"..
 	"list[current_player;main;0,4;8,4;]"..
 	"listring[context;dst]"..
 	"listring[current_player;main]"..
