@@ -57,6 +57,3 @@ Setup:
 
 TODO:
 Add radiation damage
-
-BUGS:
-Outputed steam not distributed evenly between reactor steam outputs
