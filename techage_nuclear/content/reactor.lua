@@ -1,12 +1,12 @@
 local STANDBY_TICKS = 3
 local COUNTDOWN_TICKS = 4
-local CYCLE_TIME = 10
+local CYCLE_TIME = 100
 local MAX_SIZE = 10
 
 local CELLHEAT = 8
 local COOLHEAT = -3
 
-local WATERPERCOOLER = 2
+local WATERPERCOOLER = 8
 local WATERTOSTEAM = 2
 
 local STEAMTANKCAPA = 1000
@@ -217,11 +217,11 @@ end
 
 local function add_to_outlet(pos, amount, name)
     local nvm = techage.get_nvm(pos)
-    local amnt = liquid.srv_put(nvm, name, amount, STEAMTANKCAPA)
-    if amnt == amount or amnt == 0 then
+    local rest = liquid.srv_put(nvm, name, amount, STEAMTANKCAPA)
+    if rest == amount or amnt == 0 then
         return 0
     else
-        return amnt
+        return amount - rest
     end
 end
 
@@ -249,7 +249,7 @@ local function run(pos)
             waterCount = waterCount + techage.get_nvm(pos).liquid.amount
         end
     end
-    WATERPERCOOLER = math.ceil(WATERPERCOOLER / math.sqrt(math.sqrt(math.sqrt((-netHeat) + 1))))
+    WATERPERCOOLER = math.ceil(WATERPERCOOLER / (math.abs(netHeat - 1)))
     if waterCount < coolerCount * WATERPERCOOLER then
         CRD(pos).State:idle(pos, nvm)
         minetest.chat_send_player(owner_name, "Reactor Error: Reactor does not have enough water!")
