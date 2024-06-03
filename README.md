@@ -57,5 +57,7 @@ Setup:
 
 NOTE: Reactors which are more optimal will subsequently produce more steam than a less optimal design.
 
+After you have accumulated some nuclear waste, craft a reprocessor. This will allow you to recycle your waste, unlocking a new isotope, Plutonium 239. Use this plutonium to craft some RTGs, which are small and portable power sources.
+
 TODO:
 Add radiation damage
