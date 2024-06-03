@@ -56,7 +56,6 @@ Setup:
 11. With a larger reactor, you produce more steam, but also consume more fuel rods; I would recomend automating the production of fuel rods, and the reprocessing of nuclear waste
 
 TODO:
-Add more isotopes, from the reprocessing of nuclear waste, to craft RTGs
 Add radiation damage
 
 BUGS:
