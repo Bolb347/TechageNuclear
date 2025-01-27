@@ -166,7 +166,7 @@ end
 local function take_from_inlet(pos, amount, name)
     local nvm = techage.get_nvm(pos)
     local amnt, _ = liquid.srv_take(nvm, name, amount)
-    if amnt == amount or amnt == 0 then
+    if amnt == amount then
         return 0
     else
         return amnt
@@ -176,7 +176,7 @@ end
 local function add_to_outlet(pos, amount, name)
     local nvm = techage.get_nvm(pos)
     local amnt = liquid.srv_put(nvm, name, amount, STEAMTANKCAPA)
-    if amnt == amount or amnt == 0 then
+    if amnt == 0 then
         return 0
     else
         return amnt
@@ -184,6 +184,8 @@ local function add_to_outlet(pos, amount, name)
 end
 
 local function run(pos)
+    local meta = M(pos)
+	local owner_name = meta:get_string("owner")
     local fueled = false
     local nvm = techage.get_nvm(pos)
     if not check_shell(pos) then
@@ -213,6 +215,7 @@ local function run(pos)
         end
     end
     if waterSpace < (turbineCount * STEAMPERTURBINE) / STEAMTOWATER then
+        minetest.chat_send_player(owner_name, "Turbine Error: Not enough water storage space")
         CRD(pos).State:blocked(pos, nvm)
         return
     else
@@ -229,6 +232,7 @@ local function run(pos)
     end
     while taken < turbineCount * STEAMPERTURBINE do
         if #validInlets == 0 then
+            minetest.chat_send_player(owner_name, "Turbine Error: Not enough valid steam inlets")
             CRD(pos).State:idle(pos, nvm)
             break
         end
@@ -243,6 +247,9 @@ local function run(pos)
                 break
             end
         end
+        if #validInlets == 0 then
+            break
+        end
     end
 
     for _, position in ipairs(outlets) do
@@ -250,6 +257,7 @@ local function run(pos)
     end
     while put < (turbineCount * STEAMPERTURBINE) / STEAMTOWATER do
         if #validOutlets == 0 then
+            minetest.chat_send_player(owner_name, "Turbine Error: Not enough valid steam outlets")
             CRD(pos).State:idle(pos, nvm)
             break
         end
@@ -264,12 +272,20 @@ local function run(pos)
                 break
             end
         end
-    end
-    for i, position in ipairs(powerOutlets) do
-        if ((turbineCount * STEAMPERTURBINE * POWERPERSTEAM) / #validPowerOutlets) == 0 then
+        if #validOutlets == 0 then
             break
         end
-        local amount = supply_power(position, (turbineCount * STEAMPERTURBINE * POWERPERSTEAM) / #validPowerOutlets)
+    end
+
+    for _, position in ipairs(powerOutlets) do
+        table.insert(validPowerOutlets, position)
+    end
+    for i, position in ipairs(validPowerOutlets) do
+        local powerNeed = (turbineCount * STEAMPERTURBINE * POWERPERSTEAM) / #validPowerOutlets
+        if powerNeed == 0 then
+            break
+        end
+        local amount = supply_power(position, powerNeed)
         power_put = power_put + amount
         if amount == 0 then
             break
