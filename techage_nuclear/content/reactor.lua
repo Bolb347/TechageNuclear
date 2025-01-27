@@ -147,7 +147,7 @@ local function get_offsets(pos)
     return {x_pos = xPos - 1, x_neg = xNeg + 1, y_pos = yPos - 1, y_neg = yNeg + 1, z_pos = zPos - 1, z_neg = zNeg + 1}
 end
 
-local function check_shell(pos)
+local function check_shell(pos, owner_name)
     local off = get_offsets(pos)
     local pos1 = {x = pos.x + off.x_neg, y = pos.y + off.y_neg, z = pos.z + off.z_neg}
     local pos2 = {x = pos.x + off.x_pos, y = pos.y + off.y_pos, z = pos.z + off.z_pos}
@@ -160,15 +160,18 @@ local function check_shell(pos)
     local height = off.z_pos - off.z_neg + 1
     local casing_size = (length * width * height) - ((length - 2) * (width - 2) * (height - 2))
     if (node_tbl["techage_nuclear:ta4_reactor_controller_pas"] + node_tbl["techage_nuclear:ta4_reactor_controller_act"]) > 1 then
+        minetest.chat_send_player(owner_name, "Casing invalid: too many controllers")
         return false
     end
     if (node_tbl["techage_nuclear:reactor_casing"] + node_tbl["techage_nuclear:ta4_reactor_controller_pas"] + node_tbl["techage_nuclear:ta4_reactor_controller_act"] + node_tbl["techage_nuclear:reactor_pipe_in"] + node_tbl["techage_nuclear:reactor_pipe_out"]) == casing_size then
         if (in_tbl["techage_nuclear:reactor_casing"] + in_tbl["techage_nuclear:ta4_reactor_controller_pas"] + in_tbl["techage_nuclear:ta4_reactor_controller_act"] + in_tbl["techage_nuclear:reactor_pipe_in"] + in_tbl["techage_nuclear:reactor_pipe_out"]) == 0 then
             return true
         else
+            minetest.chat_send_player(owner_name, "Casing invalid: no inputs or outputs")
             return false
         end
     else
+        minetest.chat_send_player(owner_name, "Casing invalid: not enough casing blocks")
         return false
     end
 end
@@ -229,7 +232,7 @@ local function run(pos)
     local owner_name = M(pos):get_string("owner")
     local fueled = false
     local nvm = techage.get_nvm(pos)
-    if not check_shell(pos) then
+    if not check_shell(pos, owner_name) then
         CRD(pos).State:idle(pos, nvm)
         return
     end
