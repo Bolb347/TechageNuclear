@@ -61,3 +61,4 @@ After you have accumulated some nuclear waste, craft a reprocessor. This will al
 
 TODO:
 Add radiation damage
+Fix power output on one side
